@@ -1,0 +1,2 @@
+export const SET_BATCHES = "SET_BATCHES";
+export const SET_BATCH_QUANTITIES = "SET_BATCH_QUANTITIES";

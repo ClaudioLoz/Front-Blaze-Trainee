@@ -1,0 +1,1 @@
+export const SET_PLUGINS_LIST = 'SET_PLUGINS_LIST';

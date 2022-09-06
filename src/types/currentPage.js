@@ -1,0 +1,1 @@
+export const UPDATE_PAGE_TITLE = 'UPDATE_PAGE_TITLE';

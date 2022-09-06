@@ -1,0 +1,1 @@
+export const SET_ADJUSTMENTS = 'SET_ADJUSTMENTS';

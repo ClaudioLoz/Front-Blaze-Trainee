@@ -1,0 +1,1 @@
+export const SET_TV_SETTINGS = 'SET_TV_SETTINGS';

@@ -1,0 +1,1 @@
+export const SET_KIOSK_SETTINGS = 'SET_KIOSK_SETTINGS';
