@@ -246,16 +246,6 @@ export const getVehicles = () => (dispatch => new Promise(
     )
 )
 
-export const searchVehicles = (payload = '') => (dispatch => new Promise(
-        (resolve, reject) => {
-            addMessageCurry(fetchVehiclesWithTermAPI(payload), dispatch)
-                .then(vehicles => {
-                    dispatch(saveVehicles({ vehicles }));
-                    resolve(vehicles);
-                })
-        }
-    )
-)
 export const getVehicleById = (id) => (dispatch => new Promise(
     (resolve, reject) => {
         addMessageCurry(getVehicleByIdAPI(id), dispatch)
@@ -564,51 +554,6 @@ export const getRegionsByTerminal = () => {
                         dispatch(setRegions({ regions }));
                         resolve(regions);
                     })
-            }
-        )
-    }
-}
-
-//ADD tax rule company 
-export const getTaxRateByCompany = () => {
-    return dispatch => {
-        return new Promise(
-            (resolve, reject) => {
-
-                addMessageCurry(getTaxRuleByCompanyAPI(), dispatch)
-                    .then(taxRate => {
-                        resolve(taxRate);
-                    })
-            }
-        )
-    }
-}
-
-// ADD RegionByIdApi
-export const getRegionById = (id) => {
-    return dispatch => {
-        return new Promise(
-            (resolve, reject) => {
-                addMessageCurry(getRegionByIdAPI(id), dispatch)
-                    .then(region => {
-                        resolve(region);
-                    })
-            }
-        )
-    }
-}
-
-
-// ADD getKmlByIdAPI
-export const getKmlById = (key) => {
-    return dispatch => {
-        return new Promise(
-            (resolve, reject) => {
-                addMessageCurry(getKmlByIdAPI(key), dispatch)
-                    .then(data => {
-                        resolve(data);
-                    })
-
             }
         )
     }

@@ -6,7 +6,7 @@ import { startLoading, stopLoading } from '../actions/loading';
 
 export function saveObject(key, value) {
 	if (window && window.localStorage) {
-		window.localStorage.saveObject(key, value);
+		window.localStorage.setItem(key, value);
 	}
 }
 
@@ -18,7 +18,7 @@ export function removeObject(key) {
 
 export function getObject(key) {
 	if (window && window.localStorage) {
-		return window.localStorage.getObject(key);
+		return window.localStorage.getItem(key);
 	}
 
 	return null;
@@ -250,16 +250,6 @@ export function apiPut(endPoint, data, headers = {}) {
 	return apiReq(generateUrl(endPoint), data, 'put', headers);
 }
 
-export function multiPartData(data) {
-
-	let multiPart = new FormData();
-
-	for (let prop in data) {
-		multiPart.append(prop, data[prop]);
-	}
-
-	return multiPart;
-}
 
 export function addMessageCurry(promise, dispatch, errorMsg = '', successMsg = '', showLoading = true, showError = true) {
 
@@ -343,77 +333,4 @@ export const parseJwt = token => {
 	return JSON.parse(jsonPayload);
 }
 
-export const getEmployeeRoleLevel = role => {
-	let roleLevel = roleLevels.OTHER
-	if(role){
-		const roleName = role.name;
-		if(roleName === roles.ADMIN) {
-			roleLevel = roleLevels.ADMIN
-		}else if(roleName === roles.MANAGER) {
-			roleLevel = roleLevels.MANAGER
-		}else if(roleName === roles.SHOP_MANAGER || roleName === roles.SHOP_DISPATCHER || roleName === roles.DISPATCHER) {
-			roleLevel = roleLevels.SHOP_MANAGER_AND_DISPATCHER
-		}else if(roleName === roles.INACTIVE) {
-			roleLevel = roleLevels.INACTIVE
-		}
-	}
-	return roleLevel;
-}
 
-export const getActiveUser = () => {
-	const session = getSession();
-    return session && session.employee
-}
-
-export const getActiveUserRole = () => {
-	const session = getSession();
-    const activeUser = session && session.employee
-	return activeUser && activeUser.role
-}
-
-export const canManageEmployee = employeeRole => {
-	let manageEmployee = false;
-
-	if(!employeeRole) {
-		return manageEmployee
-	}
-
-	const activeUserRole = getActiveUserRole();
-	const activeUserRoleLevel = getEmployeeRoleLevel(activeUserRole)
-
-	const employeeRoleLevel = getEmployeeRoleLevel(employeeRole)
-	if(activeUserRoleLevel.enableManageEmployee){
-		if(activeUserRoleLevel.canManageSameRole){
-			manageEmployee = activeUserRoleLevel.level <= employeeRoleLevel.level
-		} else{
-			manageEmployee = activeUserRoleLevel.level < employeeRoleLevel.level
-		}
-	}
-	return manageEmployee;
-}
-
-export const canAddEmployee = () => {
-	const activeUserRole = getActiveUserRole();
-	const activeUserRoleLevel = getEmployeeRoleLevel(activeUserRole)
-	return activeUserRoleLevel.enableManageEmployee
-}
-
-export const canEditRole = selectedRole => {
-	let editRole = false;
-
-	if(!selectedRole) {
-		return editRole
-	}
-
-	const activeUserRole = getActiveUserRole();
-	const activeUserRoleLevel = getEmployeeRoleLevel(activeUserRole)
-
-	const selectedRoleLevel = getEmployeeRoleLevel(selectedRole)
-	if(activeUserRoleLevel.canManageSameRole){
-		editRole = activeUserRoleLevel.level <= selectedRoleLevel.level
-	} else{
-		editRole = activeUserRoleLevel.level < selectedRoleLevel.level
-	}
-
-	return editRole;
-}

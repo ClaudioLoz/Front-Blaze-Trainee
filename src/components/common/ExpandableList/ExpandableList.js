@@ -4,9 +4,12 @@ import { getObject } from "../../../utils/api";
 
 export default class ExpandableList extends PureComponent {
 
-    state = {
-        selectedIndex: 0
-    }
+    constructor(){
+        super();
+        this.state = {
+            selectedIndex: 0
+        }; 
+      }
 
     componentDidMount() {
         const { currentUrl = '', list = [] } = this.props;
@@ -64,10 +67,6 @@ export default class ExpandableList extends PureComponent {
                     var isVisible = true;
                     let newItem = { ...item };
                     let newList = [...item.childrenList];
-                    if (!this.hasAccessQuickBook()) {
-                        newItem['childrenList'] = newList.filter(res => res.url !== "quickbook");
-                    }
-
                     if (assignedShop.appTarget === 'Distribution') {
                         newList = newList.filter((child) => !['OnFleet', 'Terminals', 'Manage Receipts', 'Memberships', 'Contracts', 'Weedmaps', 'Webhook Management', 'Loyalty Rewards'].includes(child.title)) || [];
                         newItem['childrenList'] = [...newList]
@@ -82,15 +81,6 @@ export default class ExpandableList extends PureComponent {
                         newList = newList.filter((child) => !['OnFleet','Tax Option','Reset','Pricing Templates','Headset','Weedmaps','SpringBig', 'Tookan', 'MTrac', 'Third Party', 'Third Party Accounts', 'Delivery Tax Rates', 'Payment Options', 'Terminals', 'Manage Receipts', 'Memberships', 'Online Store', 'Shop Documents', 'Contracts', 'Loyalty Rewards', 'Fee Minimums'].includes(child.title)) || [];
                         newItem['childrenList'] = [...newList]
                     }
-
-                    // if(newItem.url=='blazePay'){
-                    //     if(assignedShop && assignedShop.paymentOptions){
-                    //         var blazePayPermission = assignedShop.paymentOptions.find(paymentOption => paymentOption.paymentOption == 'BlazePay');
-                    //         isVisible = blazePayPermission && blazePayPermission.enabled ? true : false;
-                    //     }else{
-                    //         isVisible = false;
-                    //     }
-                    // }
                     
                     return isVisible ? (
                         <ExpandableListItem

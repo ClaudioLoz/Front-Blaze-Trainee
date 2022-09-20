@@ -10,11 +10,16 @@ import {
     PowerSettingsNew as PowerSettingsNewIcon
 } from '@material-ui/icons';
 import { appTargets } from '../../utils/constants';
+import '../../style/header.css'
 
 class NavHeader extends PureComponent {
-    state = {
-        dropdown: false
-    };
+
+    constructor() {
+        super();
+        this.state = {
+            dropdown: false
+        };
+    }
 
     componentDidMount() {
         window.addEventListener('click', () => {
@@ -69,11 +74,6 @@ class NavHeader extends PureComponent {
 
     render() {
         const { shops = [] } = this.props;
-        /* const images = {
-            Distribution: distributionLogo,
-            Retail: retailLogo,
-            Grow: growLogo
-        }; */
 
         const shopDetails = {};
 
@@ -91,24 +91,6 @@ class NavHeader extends PureComponent {
                         settings
                     </i>
                 </Button>
-                {/* <div className="shopDropdown" onClick={this.toggleDropdown}>
-                  <div>
-                    <span>{this.findShop(assignedShop.id, shops)}<i className="material-icons" style={{ float: 'right' }}>keyboard_arrow_down</i></span>     
-                  </div>
-                  {this.state.dropdown?
-                    <Paper onClick={(e) => e.stopPropagation()} className="arrow_box dropdownInner">
-                        <div className="main_menu">
-                            <div className="flex-Grid">
-                                {_.map(shopDetails).map((item, key) => <li><span><img src={images[Object.keys(shopDetails)[key]]}/></span>
-                                <ul>
-                                    <h3>BLAZE {Object.keys(shopDetails)[key]}</h3>
-                                    {item.map(menu => <li className="shopElement" onClick={this.handleChange.bind(this, menu)}><span >{menu.id == assignedShop.id ? <b style={{color: 'orange'}}>{menu.name}</b> : menu.name }</span></li>)}
-                                </ul>
-                                </li>)}
-                            </div>
-                        </div>
-                  </Paper>:null}
-                </div> */}
 
                 <div className="welcomeGroup"><div className="logouticon">
                     <IconButton

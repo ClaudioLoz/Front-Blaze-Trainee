@@ -2,18 +2,12 @@ import React, {PureComponent, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
 
-// api hits
-import {uploadAssetAPI} from '../../api/assets';
 
-// utils
-import {addMessageCurry} from '../../utils/api';
-
-// local components
-import ImageUploderModal from '../common/ImageUploaderModal';
-import EditableInputHOC from '../../containers/HOC/EditableInputHOC';
-import {getAssetType} from '../../utils/Image';
-import {NoImagePlaceholder} from '../../assets';
 import {openErrorMessage} from '../../actions/message';
+
+
+import EditableInputHOC from '../../containers/HOC/EditableInputHOC';
+import {NoImagePlaceholder} from '../../assets';
 
 class Uploader extends React.Component {
 
@@ -36,18 +30,6 @@ class Uploader extends React.Component {
     onUpload = (file) => {
 
         const {imageUploadAPI} = this.props;
-        const type = getAssetType(file.name);
-
-        const apiToHit = imageUploadAPI || uploadAssetAPI;
-
-        this.handleClose()
-
-        addMessageCurry(apiToHit(file, type), this.props.dispatch)
-            .then(photo => {
-                if (this.props.onUpload) {
-                    this.props.onUpload(photo)
-                }
-            })
 
     }
 
@@ -64,13 +46,7 @@ class Uploader extends React.Component {
                 {!hideImage &&
                 <ImagePreview src={src}/>}
                 {!hideButton && <Button onClick={this.handleOpen} className="button-blue-and-white"><span className="button-text">Upload</span></Button>}  
-                <ImageUploderModal
-                    open={this.state.open}
-                    onUpload={this.onUpload}
-                    handleClose={this.handleClose}
-                    accept='photo'
-                    onError={this.onError}
-                />    
+    
             </Fragment>
 
         )

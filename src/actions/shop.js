@@ -50,7 +50,8 @@ import {
     getLabelThumbnailAPI,
     getLabelTemplatesAPI,
     getLabelTemplateByIdAPI,
-    getIsLabelMakerEnabled
+    getIsLabelMakerEnabled,
+    getShopByIdAPI
 } from '../api/shop';
 import { addMessageCurry, commonActionAPIHit, getSession } from '../utils/api';
 import { saveTerminals } from './company';
@@ -112,6 +113,16 @@ export const saveFeeList = payload => ({
 })
 
 export const setStoreKey = actionCreatorUtil(SET_STORE_KEY)
+
+
+export const getShopById = (id) => (dispatch => new Promise(
+    (resolve, reject) => {
+        addMessageCurry(getShopByIdAPI(id), dispatch)
+            .then(shop => {
+                resolve(shop);
+            })
+    }
+))
 
 export const getShopList = () => {
     return dispatch => {

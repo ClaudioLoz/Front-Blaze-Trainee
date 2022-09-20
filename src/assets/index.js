@@ -1,16 +1,8 @@
-import loginCover from './login_cover.jpg';
-import distributionLogo from './distributionLogo.png';
-import dispatchLogo from './dispatchLogo.png';
-import insightsLogo from './insightsLogo.png'
-import retailLogo from './retailLogo.png';
-import growLogo from './growLogo.png';
 import C2QB from './C2QB_green.png';
 import QuickBookGrey from './quickbook_grey.png';
 import QuickBookWhite from './quickbook_white.png';
 import SpringBigGrey from './springbig-logo-grey.svg';
 import SpringBigWhite from './springbig-logo-white.svg';
-import MTracGrey from './mtrac_grey.png';
-import MTracWhite from './mtrac_white.png';
 import CloverGrey from './clover-grey.png';
 import CloverWhite from './clover-white.png';
 import LeaflyGrey from './leafly-grey.svg';
@@ -37,14 +29,9 @@ import BlazeInsightsIcon from './blaze-insights.png'
 import stronghold from './stronghold.png';
 import strongholdGray from './strongholdGray.png';
 import ErrorIconFees from './erroricon.svg';
+import cannabisLogo from './cannabisLogo.svg';
 
 export {
-    loginCover,
-    distributionLogo,
-    dispatchLogo,
-    insightsLogo,
-    retailLogo,
-    growLogo,
     C2QB,
     QuickBookGrey,
     QuickBookWhite,
@@ -52,8 +39,6 @@ export {
     SpringBigWhite,
     WeedmapsGrey,
     WeedmapsWhite,
-    MTracGrey,
-    MTracWhite,
     CloverGrey,
     CloverWhite,
     LeaflyGrey,
@@ -77,5 +62,6 @@ export {
     BlazeInsightsIcon,
     stronghold,
     strongholdGray,
-    ErrorIconFees
+    ErrorIconFees,
+    cannabisLogo
 };

@@ -1,4 +1,4 @@
-import { retailLogo, distributionLogo, growLogo, dispatchLogo, insightsLogo, BlazeInsightsIcon } from "../assets";
+import { cannabisLogo, BlazeInsightsIcon } from "../assets";
 
 import {
     Home,
@@ -58,13 +58,7 @@ export const reportApiUrl = `${config.report_api}api/v1/`;
 
 export const Appcues = window.Appcues;
 
-export const logoConstants = {
-    'Retail': retailLogo,
-    'Distribution': distributionLogo,
-    'Grow': growLogo,
-    'Dispatch': dispatchLogo,
-    'Insights': insightsLogo
-}
+export const logoConstant = cannabisLogo;
 
 export const settingsTabs = [
     {

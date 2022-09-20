@@ -27,6 +27,10 @@ export const getCurrentStoreKeyAPI = () => {
   return apiGet(`mgmt/storekeys/current`);
 };
 
+export const getShopByIdAPI = (id) => {
+  return apiGet(`mgmt/shops/${id}`);
+}
+
 export const getShopListAPI = () => {
   return apiGet("mgmt/shops");
 };
@@ -59,11 +63,7 @@ export const getShopLabelsAPI = (shopId) => {
   return apiGet(`mgmt/labelmaker`);
 };
 
-// export const getLabelImageAPI = (templateId) => {
-//   return apiGet(`mgmt/labelmaker/${templateId}thumbnail`).then(
-//     (response) => response.data
-//   );
-// }
+
 
 export const getLabelThumbnailAPI = async (productId) => {
   var response = await fetch(generateUrl(`mgmt/labelmaker/${productId}/thumbnail`), {

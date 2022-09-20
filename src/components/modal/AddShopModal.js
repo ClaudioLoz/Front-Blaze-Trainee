@@ -3,14 +3,19 @@ import { FormControl, InputLabel, MenuItem, Select, Input } from '@material-ui/c
 
 import { isValidString } from '../../utils/string';
 
+import ForwardRefHOC from '../../containers/HOC/ForwardRefHOC';
 import ModalDialog from '../common/ModalDialog';
 
 class AddShopModal extends PureComponent {
 
-    state = {
-        NewShopName: '',
-        appTarget: 'Retail'
-    }
+
+    constructor() {
+        super();
+        this.state = {
+            NewShopName: '',
+            appTarget: 'Retail'
+        };
+      }
 
     addShop = () => {
 
@@ -92,4 +97,4 @@ class AddShopModal extends PureComponent {
 
 }
 
-export default AddShopModal
+export default ForwardRefHOC(AddShopModal);

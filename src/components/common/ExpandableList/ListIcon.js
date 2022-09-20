@@ -6,8 +6,6 @@ import {
     SpringBigWhite,
     WeedmapsGrey,
     WeedmapsWhite,
-    MTracGrey,
-    MTracWhite,
     CloverWhite,
     CloverGrey,
     LeaflyGrey,
@@ -31,8 +29,6 @@ export default class ListIcon extends PureComponent {
                              break;
             case 'Weedmaps': src= active ? WeedmapsWhite : WeedmapsGrey;
                              break;
-            case 'MTrac' : src = active ? MTracWhite : MTracGrey;
-                            break;
             case 'Clover':  src = active ? CloverWhite : CloverGrey;
                             break;
             case 'Leafly':  src = active ? LeaflyWhite : LeaflyGrey;

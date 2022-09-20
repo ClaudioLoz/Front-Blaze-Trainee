@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import { Button } from '@material-ui/core';
-
+import '../../style/common.css'
 export default class EditActionComponent extends PureComponent {
 
     render() {
@@ -24,11 +24,11 @@ export default class EditActionComponent extends PureComponent {
                     editMode
                         ?
                         <Fragment>
-                            {!hideSave ? <Button data-cy="btn-save-item" className={classButton} onClick={onSave}>Save</Button> : null}
-                            <Button className={classButtonDelete} onClick={onCancel}>Cancel</Button>
+                            {!hideSave ? <Button className={classButton} onClick={onSave} variant="contained">Save</Button> : null}
+                            <Button className={classButtonDelete} onClick={onCancel} variant="contained">Cancel</Button>
                         </Fragment>
                         :
-                        <Button data-cy="btn-edit-item" className={classButton} onClick={onEdit}>{editTitle}</Button>
+                        <Button className={classButton} onClick={onEdit} variant="contained" color="blue">{editTitle}</Button>
                 }
             </div>
         )

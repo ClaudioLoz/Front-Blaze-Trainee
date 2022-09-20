@@ -1,22 +1,20 @@
-import React, { PureComponent, createRef } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+
+import {Redirect} from 'react-router-dom'
 import { Grid, Button, TextField } from "@material-ui/core";
 import OnEvent from "react-onevent";
 
 import {
-  login,
   login2,
   switchApp,
-  reviewCompanyAgreement,
   reviewCompanyAgreement2,
 } from "../actions/auth";
 import { openErrorMessage } from "../actions/message";
 
 import ContainerWithTitle from "../containers/HOC/ContainerWithTitle";
-import SideCoverHOC from "./SideCover";
 import { appTargets } from "../utils/constants";
 import validateInput from "../utils/validations/Login";
-// import { isLoggedIn, logOut } from "../utils/api";
 
 class Login extends PureComponent {
   constructor() {
@@ -26,15 +24,10 @@ class Login extends PureComponent {
       password: "",
       loading: false,
       errors: {},
-      showDocusignModal: false,
       docuRes: {},
-      redirectApp: null,
+      toSwitch:false
     };
   }
-
-  docusignNotificationModal = createRef();
-
-  timeout = null;
 
   onChange = (e) => {
     this.setState({
@@ -61,7 +54,7 @@ class Login extends PureComponent {
   };
 
   onDocusignContinue = (reload) => {
-    const { email, password, redirectApp } = this.state;
+    const { email, password } = this.state;
 
     const body = {
       email: email,
@@ -72,8 +65,7 @@ class Login extends PureComponent {
     this.props
       .dispatch(login2(body))
       .then((res) => {
-        
-
+        this.setState({toSwitch:true})
         let { employee = {}, assignedShop = {}, company = {} } = res;
         let host = "";
         this.setState({ loading: false });
@@ -131,7 +123,11 @@ class Login extends PureComponent {
   };
 
   render() {
-    const { email, password, errors } = this.state;
+    const { email, password, errors,toSwitch } = this.state;
+    
+        if (toSwitch === true) {
+                return <Redirect to="/switch" />;
+            }
 
     return (
       <Grid justify="center" container xs={11} sm={7} md={11} lg={7}>
@@ -151,7 +147,6 @@ class Login extends PureComponent {
                 name="email"
                 error={errors.email}
                 helperText={errors.email}
-                data-cy="input-email"
                 inputProps={{
                   style: {
                     padding: "15px 20px",
@@ -186,11 +181,9 @@ class Login extends PureComponent {
                 name="password"
                 error={errors.password}
                 helperText={errors.password}
-                data-cy="input-password"
               />
               <div className="margin-top-medium">
                 <Button
-                  data-cy="btn-login"
                   onClick={this.onSubmit}
                   id="login-button"
                   variant="contained"
